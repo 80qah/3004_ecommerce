@@ -1,0 +1,364 @@
+
+<!DOCTYPE html>
+<html style="height:100%;">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Food Finder</title>
+        <!-- Fonts -->
+        <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        <!-- <link rel="stylesheet" href="https://kit.fontawesome.com/0f35bb7307.css" crossorigin="anonymous"> -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+        <script>
+            var data = 1;
+            
+            //printing default value of data that is 0 in h2 tag
+            document.getElementById("quantity").innerText = data;
+                
+            //creation of increment function
+            function increment() {
+                data = data + 1;
+                document.getElementById("quantity").innerText = data;
+            }
+            //creation of decrement function
+            function decrement() {
+                data = data - 1;
+                document.getElementById("quantity").innerText = data;
+            }
+        </script>
+
+
+        <style>
+            body{
+                font: 'Inter';
+            }
+            .content{
+                display: flex;
+            }
+            /* start of navbar and top bar */
+            .left-nav{
+                height:100vh;
+                background-color: #F9B208;
+                width: 200px;
+                border-radius: 0px 5px 5px 0px;
+                margin-right: 10px;
+                position: fixed;
+            }
+            .left-nav h1{
+                font-size: 33px;
+                color: white;
+                padding: 15px;
+            }
+            .left-nav a{
+                color: black;
+                text-decoration: none;
+
+                align-items:center;
+            }
+            .left-nav p{
+                font-size: 15px;
+                font-weight: 500;
+                padding-left:15px ;
+                margin-bottom:0 ;
+            }
+            .menu-options{
+                display: flex;
+                padding-left: 15px;
+                padding-bottom: 10px;
+                padding-top: 10px;
+                align-items:center;
+            }
+            .menu-options :active{
+                color: #fcca38;
+            }
+            #logout{
+                position: absolute;
+                bottom: 0;
+            }
+            .icons{
+                width:20px;
+                height: 20px;
+            }
+            .right-side{
+                margin-left:210px;
+                margin-bottom: 20px;
+            }
+            input{
+                width: 600px;
+                height: 40px;
+                background-color:#FFF0b3;
+                border-radius: 13px;
+                border:0px;
+            }
+            .search-bar{
+                margin-left: 10px;
+                margin-right: 10px;
+                margin-top: 15px;
+            }
+            .basket{
+                display: flex;
+                background-color:#FFF0b3;
+                border-radius: 8px;
+                border:0px;
+                width: 150px;
+                height: 40px;
+
+                margin-left: auto;
+                margin-top: 15px;
+
+                align-items:center;
+                justify-content:center;
+            }
+            .basket p{
+                margin-bottom: 0;
+            }
+            .basket img{
+                margin-right:10px;
+                margin-left: 0px;
+            }
+            
+            .user{
+                display: flex;
+                margin-left: 15px;
+                margin-top: 15px;
+                align-items:center;
+                justify-content:center;
+            }
+            .user p{
+                margin-bottom: 0;   
+                padding-left:10px;
+                font-weight: 500;             
+            }
+            .user img{
+                width: 30px;
+                height: 30px;
+                margin-top: 5px;
+            }
+            .right-top{
+                display: flex;
+                width: auto;
+            }
+            .left-nav a:hover{
+                background-color: #fcca38;
+            }
+            /* End of navbar and top bar */
+
+            /* start of categories */
+            .category-item{
+                border: 0px;
+                display: inline-flex;
+                background-color: #E6E6E6;
+                border-radius: 10px;
+                margin-left: 15px;
+                padding:10px;
+                margin-top:20px;
+                margin-bottom:40px;
+
+                align-items:center;
+                justify-content:center;
+
+                min-width: 190px;
+            }
+            .category-item img{
+                width: 50px;
+                height: 50px;
+            }
+            .category-item p{
+                padding-left: 10px;
+                align-items:center;
+                justify-content:center;
+                margin-bottom: 0;
+                font-size: 14px;
+                font-weight: 500;
+            }
+            /* end of categories */
+
+            /* item list */
+            #sales-header{
+                font-size: 27px;
+                margin-left: 15px;
+            }
+            .item-list{
+                display: flex;
+                justify-content: space-between;
+            }
+            .item-card{
+                width: 244px;
+                height: 300px;
+                background: #F7F7F7;
+                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                border-radius: 15px;
+
+                text-align: center;
+                padding-top:20px;
+                margin-right:15px;
+                margin-left: 15px;
+                margin-top:10px;
+            }
+            .item-card img{
+                width: auto;
+                height: 150px;
+            }
+            .item-name{
+                font-size: 14px;
+                margin-bottom: 0;
+            }
+            .item-price{
+                font-size: 22px;
+                font-weight: 500;
+            }
+            .quantity-button{
+                display: inline-flex;
+                margin: auto;
+                
+            }
+            .quantity-button img{
+                width:25px;
+                height: 25px;
+            }
+            .quantity-button button{
+                border: 0px;
+                background-color: #F7F7F7;
+            }
+            .quantity{
+                margin-bottom: 0;
+                font-size: 18px;
+                padding-left: 30px;
+                padding-right: 30px;
+            }
+            /* end of item list */
+
+        </style>
+
+    </head>
+    <body class="content">
+        <div class="left-nav">
+            <h1>Catchy Name</h1>
+            <a class="menu-options" href="home.html">
+                <img src="/images/home 1.png" class="icons">
+                <p>Home</p>
+            </a>
+            <a class="menu-options" href="groceries.html">
+                <img src="/images/grocery 1.png" class="icons">
+                <p>Groceries</p>
+            </a>
+            <a class="menu-options">
+                <img src="/images/deal 1.png" class="icons">
+                <p>Top Pick</p>
+            </a>
+            <a class="menu-options">
+                <img src="/images/settings 1.png" class="icons">
+                <p>Settings</p>
+            </a>
+            <a class="menu-options" id="logout">
+                <img src="/images/logout 2.png" class="icons">
+                <p>Log Out</p>
+            </a>
+
+        </div>
+
+        <div class="right-side">
+            <div class="right-top">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search for groceries">
+                </div>
+                <div class="basket">
+                    <img src="/images/shopping-basket.png" class="icons">
+                    <p>$15</p>
+                </div>
+                <div class="user">
+                    <img src="/images/user 2.png" class="icons">
+                    <p>User name</p>
+                </div>
+            </div>
+            
+            <div class="right-bottom">
+                <div class="categories">
+                    <button class="category-item">
+                        <img src="/images/vegetable.png">
+                        <p>Vegetables</p>
+                    </button>
+                    <button class="category-item">
+                        <img src="/images/fruits.png">
+                        <p>Fruits</p>
+                    </button>
+                </div>
+                
+                <h3 id="sales-header">Groceries</h3>
+                <div class="item-list">
+                    <div class="item-card">
+                        <img src="/images/pear.png">
+                        <p class="item-name">Item name</p>
+                        <p class="item-price">$1.00</p>
+                        <div class="quantity-button">
+                            <button onclick="decrement()">
+                                <img src="/images/minus.png">
+                            </button>
+                            <p class="quantity" id="quantity">1</p>
+                            <button onclick="increment()">
+                                <img src="/images/add.png">
+                            </button>
+                        </div>
+                    </div>
+                    <div class="item-card">
+                        <img src="/images/pear.png">
+                        <p class="item-name">Item name</p>
+                        <p class="item-price">$1.00</p>
+                        <div class="quantity-button">
+                            <button onclick="decrement()">
+                                <img src="/images/minus.png">
+                            </button>
+                            <p class="quantity" id="quantity">1</p>
+                            <button onclick="increment()">
+                                <img src="/images/add.png">
+                            </button>
+                        </div>
+                    </div>
+                    <div class="item-card">
+                        <img src="/images/pear.png">
+                        <p class="item-name">Item name</p>
+                        <p class="item-price">$1.00</p>
+                        <div class="quantity-button">
+                            <button onclick="decrement()">
+                                <img src="/images/minus.png">
+                            </button>
+                            <p class="quantity" id="quantity">1</p>
+                            <button onclick="increment()">
+                                <img src="/images/add.png">
+                            </button>
+                        </div>
+                    </div>
+                    <div class="item-card">
+                        <img src="/images/pear.png">
+                        <p class="item-name">Item name</p>
+                        <p class="item-price">$1.00</p>
+                        <div class="quantity-button">
+                            <button onclick="decrement()">
+                                <img src="/images/minus.png">
+                            </button>
+                            <p class="quantity" id="quantity">1</p>
+                            <button onclick="increment()">
+                                <img src="/images/add.png">
+                            </button>
+                        </div>
+                    </div>
+                    
+                    
+                    
+
+                </div>
+            </div>
+        </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+            crossorigin="anonymous"></script>
+    </body>
+</html>
