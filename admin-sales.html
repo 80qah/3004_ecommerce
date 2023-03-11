@@ -16,6 +16,24 @@
     
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
+        <script>
+            var data = 1;
+            
+            //printing default value of data that is 0 in h2 tag
+            document.getElementById("quantity").innerText = data;
+                
+            //creation of increment function
+            function increment() {
+                data = data + 1;
+                document.getElementById("quantity").innerText = data;
+            }
+            //creation of decrement function
+            function decrement() {
+                data = data - 1;
+                document.getElementById("quantity").innerText = data;
+            }
+        </script>
+
 
         <style>
             body{
@@ -23,7 +41,9 @@
             }
             .content{
                 display: flex;
+                width:100vw;
             }
+            /* start of navbar and top bar */
             .left-nav{
                 height:100vh;
                 background-color: #F9B208;
@@ -42,7 +62,6 @@
                 text-decoration: none;
 
                 align-items:center;
-
             }
             .left-nav p{
                 font-size: 15px;
@@ -110,10 +129,11 @@
             
             .user{
                 display: flex;
-                margin-left: 15px;
+                margin-right: 15px;
                 margin-top: 15px;
                 align-items:center;
                 justify-content:center;
+                margin-left: auto;
             }
             .user p{
                 margin-bottom: 0;   
@@ -127,34 +147,19 @@
             }
             .right-top{
                 display: flex;
-                width: auto;
+                align-items: center;
             }
-            #header-image{
-                height:auto;
-                width: 100%;
-                margin-top: 15px;
-                margin-left: 10px;
-                padding-right: 10px;
-                margin-bottom: 10px;
+            .left-nav a:hover{
+                background-color: #fcca38;
             }
-            .header-word{
-                position: absolute;
-                top:70px;
-                padding-left:30px;
-                width:auto;
-                font-size: 60px;
-                font-weight: 500;
-                color: white;
-                max-width: 500px;
+            /* End of navbar and top bar */
 
-                text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-            }
-
+            /* item list */
             #sales-header{
                 font-size: 27px;
                 margin-left: 15px;
+                margin-top: 20px;
             }
-
             .item-list{
                 display: flex;
                 justify-content: space-between;
@@ -168,7 +173,7 @@
                 border-radius: 15px;
 
                 text-align: center;
-                padding-top:20px;
+                padding-top:10px;
                 margin-top:10px;
             }
             .item-card img{
@@ -180,7 +185,7 @@
                 margin-bottom: 0;
             }
             .item-price{
-                font-size: 22px;
+                font-size: 18px;
                 font-weight: 500;
             }
             .quantity-button{
@@ -202,9 +207,20 @@
                 padding-left: 30px;
                 padding-right: 30px;
             }
-
-            .left-nav a:hover{
-                background-color: #fcca38;
+            .amount-left{
+                font-size: 15px;
+                font-weight: 500;
+                color: red;
+                margin-bottom: 0px;
+            }
+            /* end of item list */
+            
+            .soldout{
+                padding-left:10px;
+                padding-top: 30px;
+            }
+            .soldout h3{
+                font-size: 22px;
             }
 
         </style>
@@ -213,17 +229,17 @@
     <body class="content">
         <div class="left-nav">
             <h1>Catchy Name</h1>
-            <a class="menu-options" href="home.html">
+            <a class="menu-options" href="admin-home.html">
                 <img src="/images/home 1.png" class="icons">
                 <p>Home</p>
             </a>
-            <a class="menu-options" href="groceries.html">
-                <img src="/images/grocery 1.png" class="icons">
-                <p>Groceries</p>
+            <a class="menu-options" href="admin-inventory.html">
+                <img src="/images/checklists.png" class="icons">
+                <p>Inventory</p>
             </a>
-            <a class="menu-options">
-                <img src="/images/deal 1.png" class="icons">
-                <p>Top Pick</p>
+            <a class="menu-options" href="admin-sales.html">
+                <img src="/images/bar-chart.png" class="icons">
+                <p>Sales</p>
             </a>
             <a class="menu-options">
                 <img src="/images/settings 1.png" class="icons">
@@ -233,41 +249,35 @@
                 <img src="/images/logout 2.png" class="icons">
                 <p>Log Out</p>
             </a>
-
         </div>
 
         <div class="right-side">
             <div class="right-top">
                 <div class="search-bar">
-                    <input type="text" placeholder="Search for groceries">
-                </div>
-                <div class="basket">
-                    <img src="/images/shopping-basket.png" class="icons">
-                    <p>$15</p>
+                    <input type="text" placeholder="Search for stock">
                 </div>
                 <div class="user">
                     <img src="/images/user 2.png" class="icons">
                     <p>User name</p>
                 </div>
+                <div class="notifcations">
+                    <img src="/images/bell.png" class="icons">
+                </div>
             </div>
             
-            <div class="right-bottom">
-                <div class="header-image">
-                    <img src="/images/Mask group.png" id="header-image">
-                    <h3 class="header-word">Join us in NTUC Ugly Food Campaign</h3>
-                </div>
-                <h3 id="sales-header">Today's Sales</h3>
+            <div class="right-bottom">                
+                <h3 id="sales-header">Today's Sale</h3>
                 <div class="item-list">
                     <div class="item-card">
                         <img src="/images/pear.png">
                         <p class="item-name">Item name</p>
                         <p class="item-price">$1.00</p>
                         <div class="quantity-button">
-                            <button>
+                            <button onclick="decrement()">
                                 <img src="/images/minus.png">
                             </button>
-                            <p class="quantity">1</p>
-                            <button>
+                            <p class="amount-left">Quantity left: 0</p>
+                            <button onclick="increment()">
                                 <img src="/images/add.png">
                             </button>
                         </div>
@@ -277,11 +287,11 @@
                         <p class="item-name">Item name</p>
                         <p class="item-price">$1.00</p>
                         <div class="quantity-button">
-                            <button>
+                            <button onclick="decrement()">
                                 <img src="/images/minus.png">
                             </button>
-                            <p class="quantity">1</p>
-                            <button>
+                            <p class="amount-left">Quantity left: 0</p>
+                            <button onclick="increment()">
                                 <img src="/images/add.png">
                             </button>
                         </div>
@@ -291,11 +301,11 @@
                         <p class="item-name">Item name</p>
                         <p class="item-price">$1.00</p>
                         <div class="quantity-button">
-                            <button>
+                            <button onclick="decrement()">
                                 <img src="/images/minus.png">
                             </button>
-                            <p class="quantity">1</p>
-                            <button>
+                            <p class="amount-left">Quantity left: 0</p>
+                            <button onclick="increment()">
                                 <img src="/images/add.png">
                             </button>
                         </div>
@@ -305,16 +315,32 @@
                         <p class="item-name">Item name</p>
                         <p class="item-price">$1.00</p>
                         <div class="quantity-button">
-                            <button>
+                            <button onclick="decrement()">
                                 <img src="/images/minus.png">
                             </button>
-                            <p class="quantity">1</p>
-                            <button>
+                            <p class="amount-left">Quantity left: 0</p>
+                            <button onclick="increment()">
                                 <img src="/images/add.png">
                             </button>
                         </div>
+                    </div>                  
+                </div>
+            </div>
+            <div class="soldout">
+                <h3>Sold Out</h3>
+                <div class="item-card">
+                    <img src="/images/pear.png">
+                    <p class="item-name">Item name</p>
+                    <p class="item-price">$1.00</p>
+                    <div class="quantity-button">
+                        <button onclick="decrement()">
+                            <img src="/images/minus.png">
+                        </button>
+                        <p class="amount-left">Quantity left: 0</p>
+                        <button onclick="increment()">
+                            <img src="/images/add.png">
+                        </button>
                     </div>
-
                 </div>
             </div>
         </div>
