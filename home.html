@@ -16,6 +16,79 @@
     
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
+        <script>
+            var data = 1;
+            var data2 = 1;
+            var data3 = 1;
+            var data4 = 1;
+            
+            //printing default value of data that is 0 in h2 tag
+            document.getElementById("fruit1").innerText = data;
+            document.getElementById("fruit2").innerText = data2;
+            document.getElementById("fruit3").innerText = data3;
+            document.getElementById("fruit4").innerText = data4;
+                
+            //creation of increment function
+            function increment() {
+                data = data + 1;
+                document.getElementById("fruit1").innerText = data;
+            }
+            //creation of decrement function
+            function decrement() {
+                if(data<=0){
+                    document.getElementById("fruit1").innerText = 0;
+                }
+                else{
+                    data = data - 1;
+                    document.getElementById("fruit1").innerText = data;
+                }
+            }
+
+            function increment2() {
+                data2 = data2 + 1;
+                document.getElementById("fruit2").innerText = data2;
+            }
+            //creation of decrement function
+            function decrement2() {
+                if(data2<=0){
+                    document.getElementById("fruit2").innerText = 0;
+                }
+                else{
+                    data2 = data2 - 1;
+                    document.getElementById("fruit2").innerText = data2;
+                };
+            }
+
+            function increment3() {
+                data3 = data3 + 1;
+                document.getElementById("fruit3").innerText = data3;
+            }
+            //creation of decrement function
+            function decrement3() {
+                if(data3<=0){
+                    document.getElementById("fruit3").innerText = 0;
+                }
+                else{
+                    data3 = data3 - 1;
+                    document.getElementById("fruit3").innerText = data3;
+                }
+            }
+
+            function increment4() {
+                data4 = data4 + 1;
+                document.getElementById("fruit4").innerText = data4;
+            }
+            //creation of decrement function
+            function decrement4() {
+                if(data4<=0){
+                    document.getElementById("fruit4").innerText = 0;
+                }
+                else{
+                    data4 = data4 - 1;
+                    document.getElementById("fruit4").innerText = data4;
+                }
+            }
+        </script>
 
         <style>
             body{
@@ -263,11 +336,11 @@
                         <p class="item-name">Item name</p>
                         <p class="item-price">$1.00</p>
                         <div class="quantity-button">
-                            <button>
+                            <button onclick="decrement()">
                                 <img src="/images/minus.png">
                             </button>
-                            <p class="quantity">1</p>
-                            <button>
+                            <p class="quantity" id="fruit1">1</p>
+                            <button onclick="increment()">
                                 <img src="/images/add.png">
                             </button>
                         </div>
@@ -277,11 +350,11 @@
                         <p class="item-name">Item name</p>
                         <p class="item-price">$1.00</p>
                         <div class="quantity-button">
-                            <button>
+                            <button onclick="decrement2()">
                                 <img src="/images/minus.png">
                             </button>
-                            <p class="quantity">1</p>
-                            <button>
+                            <p class="quantity" id="fruit2">1</p>
+                            <button onclick="increment2()">
                                 <img src="/images/add.png">
                             </button>
                         </div>
@@ -291,11 +364,11 @@
                         <p class="item-name">Item name</p>
                         <p class="item-price">$1.00</p>
                         <div class="quantity-button">
-                            <button>
+                            <button onclick="decrement3()">
                                 <img src="/images/minus.png">
                             </button>
-                            <p class="quantity">1</p>
-                            <button>
+                            <p class="quantity" id="fruit3">1</p>
+                            <button onclick="increment3()">
                                 <img src="/images/add.png">
                             </button>
                         </div>
@@ -305,11 +378,11 @@
                         <p class="item-name">Item name</p>
                         <p class="item-price">$1.00</p>
                         <div class="quantity-button">
-                            <button>
+                            <button onclick="decrement4()">
                                 <img src="/images/minus.png">
                             </button>
-                            <p class="quantity">1</p>
-                            <button>
+                            <p class="quantity" id="fruit4">1</p>
+                            <button onclick="increment4()">
                                 <img src="/images/add.png">
                             </button>
                         </div>
