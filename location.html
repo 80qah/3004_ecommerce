@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html style="height:100%;">
     <head>
@@ -17,14 +16,8 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
         <script>    
-            function login(){
-                var username = document.getElementById("username").value;
-                if(username=="admin"){
-                    window.location.href = "admin-home.html"
-                }
-                else{
-                    window.location.href = "location.html"
-                }
+            function home(){
+                window.location.href = "home.html"
             }
         </script>
 
@@ -57,21 +50,13 @@
                 padding-bottom:8px;
                 
             }
-            .form-control{
-                width: 284px;
-                height: 37px;
-                background: #EBEBEB;
-                border-radius: 6px;
+            .header p{
+                padding-bottom:20px;
+                font-size: 13px;
+                text-align: center;
+                margin-bottom: 0px;
+                color: grey;
             }
-            ::placeholder{
-                color: #ABABAB;
-            }
-            input{
-                margin-top:10px;
-                margin-left:auto;
-                margin-right:auto;
-            }
-
 
             i{
                 font-weight: 500;
@@ -79,17 +64,9 @@
                 color: #626262;
             }
 
-            .forget{
-                text-align:right;
-                width: 284px;
-                margin-left:auto;
-                margin-right:auto;
-                margin-top: -4px;
-            }
-
             .button{
                 text-align:center;
-                padding-top:30px;
+                padding-top:50px;
             }
             .login-button{
                 width: 284px;
@@ -99,25 +76,37 @@
                 color:white;
                 border:0px;
             }
+
+            #sort-select{
+                text-align: center;
+            }
+            #sort-options{
+                width: 284px;
+                height: 50px;
+                font-size:16px;
+                color:black;
+                border-radius:5px;
+            }
         </style>
 
     </head>
     <body class="content">
         <div class="login-box">
             <div class="header">
-                <h3>Login</h3>
+                <h3>Select Supermarket</h3>
+                <p>Please select the supermarket you wish to shop from</p>
             </div>
-            <div>
-                <input id="username" type="text" class="form-control" placeholder="Enter email">
-                <input type="text" class="form-control" placeholder="Enter password">
-            </div>
-            <div class="forget">
-                <a href="#">
-                    <i>Forget password?</i>
-                </a>
+            <div id="sort-select">
+                <select id="sort-options" name="sortby">
+                    <option value="Relevance">FairPrice - Bukit Panjang</option>
+                    <option value="hTl">FairPrice - Bukit Batok</option>
+                    <option value="lTh">FairPrice - Bukit Gombak</option>
+                    <option value="eTl">FairPrice - Bukit Merah</option>
+                    <option value="lTe">FairPrice - Choa Chu Kang</option>
+                </select>
             </div>
             <div class="button">
-                <button class="login-button" onclick="login()">LOGIN</button>
+                <button class="login-button" onclick="home()">CONFIRM</button>
             </div>
         </div>
         
