@@ -138,67 +138,58 @@
                 justify-content: space-evenly;
                 width: 100%;
             }
-            .item-card{
-                height: 160px;
-                background: #F7F7F7;
-                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-                border-radius: 15px;
-
-                text-align: center;
-                display: flex;
-
-                align-items:center;
-                justify-content:space-evenly;
-
-                margin-bottom: 10px;
-            }
-            .item-card img{
-                width: auto;
-                height: 130px;
-            }
-            .item-name{
-                font-size: 23px;
-                margin-bottom: 0;
-                max-width: 200px;
-                text-align: left;
-                padding-left:10px;
-            }
-            .item-price{
-                font-size: 22px;
-                font-weight: 500;
-            }
-            .item-status{
-                font-size: 18px;
-                font-weight: 500;
-                max-width: 100px;
-                text-align: left;
-                margin-bottom: 0;
-            }
-            .product{
-                display: flex;
-                align-items: center;
-            }
+            
             /* end of item list */
 
-            #sort-word{
-                color: #626262;
-                font-weight: 400;
-                font-size: 13px;
+            .overview{
+                display: flex;
             }
-            #sort-select{
-                padding-right:10px;
-                padding-left:10px;
-                margin-top:-4px;
-                margin-left: auto;
+            .info input{
+                width: 400px;
             }
-            #sort-options{
-                font-size:13px;
-                background-color:grey;
-                color:white;
-                border-radius:10px;
+            .info{
+                padding: 10px;
+            }
+            .info label{
+                padding-right:50px;
+                width:100px;
             }
 
-            
+            #changebtn{
+                background-color: #E6E3E3;
+                border: 0px;
+                border-radius: 15px;
+                padding: 1px 30px 1px 30px;
+            }
+
+            .bottom-left{
+                padding-right: 100px;
+            }
+
+            #sort-options{
+                border: 0px;
+                border-radius: 13px;
+                background-color: #EDF6F0;
+                width: 400px;
+                height: 40px;
+            }
+
+            .buttons{
+                display: flex;
+                justify-content: center;
+            }
+            #cancelbtn{
+                border-radius: 10px;
+                border: 0px;
+                padding: 7px 20px 7px 20px;
+            }
+            #savebtn{
+                border-radius: 10px;
+                border: 0px;
+                background-color: #B3EFBD;
+                padding: 7px 20px 7px 20px;
+
+            }
 
 
         </style>
@@ -245,64 +236,59 @@
             
             <div class="right-bottom">
                 <div class="sort-header">               
-                    <h3 id="sales-header">Inventory</h3>
+                    <h3 id="sales-header">Product Overview</h3>
                 </div>
-                <div class="item-header">
-                    <h3>Product</h3>
-                    <h3>Stock</h3>
-                    <h3>Price</h3>
-                </div>
-                <div class="item-list">
-                    <div class="item-card">
-                        
-                        <div class="product">
-                            <img src="/images/pear.png">
-                            <p class="item-name">Pear</p>
+                <div class="overview">                
+                    <div class="bottom-left">
+                        <div>
+                            <h1>image</h1>
                         </div>
-                        <div class="progress" style="height: 35px;width: 150px;">
-                            <div class="progress-bar" role="progressbar" style="width: 70%;background-color: #A5E2B7;color: black;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70/100</div>
-                          </div>
-                        <p class="item-price">$1.00</p>
+                        <div>
+                            <button id="changebtn">Change Image</button>
+                        </div>
+                    </div>
+                    <div class="bottom-right">
+                        <div class="info">
+                            <label>Name</label>
+                            <input type="text">
+                        </div>
+                        <div class="info">
+                            <label>Stock</label>
+                            <input type="text">
+                        </div>
+                        <div class="info">
+                            <label>Price</label>
+                            <input type="text">
+                        </div>
+                        <div class="info" style="display:flex;">
+                            <label>Category</label>
+                            <div id="sort-select">
+                                <select id="sort-options" name="sortby">
+                                    <option value="category">Category</option>   
+                                </select>
+                            </div>
+                        </div>
+                        <div class="info" style="display:flex;">
+                            <label>Sub Category</label>
+                            <div id="sort-select">
+                                <select id="sort-options" name="sortby">
+                                    <option value="category">Category</option>   
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="item-list">
-                    <div class="item-card">
-                        <div class="product">
-                            <img src="/images/lemon.png">
-                            <p class="item-name">Lemon</p>
-                        </div>
-                        <div class="progress" style="height: 35px;width: 150px;">
-                            <div class="progress-bar" role="progressbar" style="width: 70%;background-color: #A5E2B7;color: black;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70/100</div>
-                          </div>
-                        <p class="item-price">$1.00</p>
+                <div class="buttons">
+                    <div style="padding-right: 20px;">
+                        <button id="cancelbtn">Cancel</button>
+                    </div>
+                    <div>
+                        <button id="savebtn">Save Changes</button>
                     </div>
                 </div>
-                <div class="item-list">
-                    <div class="item-card">
-                        <div class="product">
-                            <img src="/images/Apple (2).png">
-                            <p class="item-name">Apple</p>
-                        </div>
-                        <div class="progress" style="height: 35px;width: 150px;">
-                            <div class="progress-bar" role="progressbar" style="width: 70%;background-color: #A5E2B7;color: black;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70/100</div>
-                          </div>
-                        <p class="item-price">$1.00</p>
-                    </div>
-                </div>
-                <div class="item-list">
-                    <div class="item-card">
-                        <div class="product">
-                            <img src="/images/apricot.png">
-                            <p class="item-name">Apricot</p>
-                        </div>
-                        <div class="progress" style="height: 35px;width: 150px;">
-                            <div class="progress-bar" role="progressbar" style="width: 70%;background-color: #A5E2B7;color: black;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70/100</div>
-                          </div>
-                        <p class="item-price">$1.00</p>
-                    </div>
-                </div>
-                
             </div>
+                
+                
         </div>
 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
