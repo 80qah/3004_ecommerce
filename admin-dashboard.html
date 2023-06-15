@@ -14,23 +14,9 @@
     
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
-        <script>
-            var data = 1;
-            
-            //printing default value of data that is 0 in h2 tag
-            document.getElementById("quantity").innerText = data;
-                
-            //creation of increment function
-            function increment() {
-                data = data + 1;
-                document.getElementById("quantity").innerText = data;
-            }
-            //creation of decrement function
-            function decrement() {
-                data = data - 1;
-                document.getElementById("quantity").innerText = data;
-            }
-        </script>
+        <!-- bar chart js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
 
 
         <style>
@@ -45,11 +31,12 @@
             /* start of navbar and top bar */
             .left-nav{
                 height:100vh;
-                background-color: #F9B208;
+                background-color: #C6F4D3;
                 width: 200px;
                 border-radius: 0px 5px 5px 0px;
                 margin-right: 10px;
                 position: fixed;
+                padding-top: 30px;
             }
             .left-nav h1{
                 font-size: 33px;
@@ -94,7 +81,7 @@
             input{
                 width: 600px;
                 height: 40px;
-                background-color:#FFF0b3;
+                background-color:#EDF6F0;
                 border-radius: 13px;
                 border:0px;
             }
@@ -127,7 +114,7 @@
                 align-items: center;
             }
             .left-nav a:hover{
-                background-color: #fcca38;
+                background-color: #A5E2B7;
             }
             /* End of navbar and top bar */
 
@@ -142,15 +129,6 @@
             .sort-header{
                 display: flex;
                 align-items:center;
-            }
-            .addBtn{
-                margin-left: auto;
-                border: 0px;
-                background-color: #FFE268;
-                width: 100px;
-                height: 30px;
-                border-radius: 10px;
-                font-weight: 500;
             }
             #sales-header{
                 font-size: 27px;
@@ -233,18 +211,21 @@
     </head>
     <body class="content">
         <div class="left-nav">
-            <h1>SUPER MART</h1>
             <a class="menu-options" href="admin-home.html">
                 <img src="/images/home 1.png" class="icons">
                 <p>Home</p>
             </a>
-            <a class="menu-options" href="admin-inventory.html">
-                <img src="/images/checklists.png" class="icons">
-                <p>Inventory</p>
+            <a class="menu-options" href="admin-products.html">
+                <img src="/images/producticon.png" class="icons">
+                <p>Products</p>
             </a>
-            <a class="menu-options" href="admin-sales.html">
+            <a class="menu-options" href="admin-dashboard.html">
                 <img src="/images/bar-chart.png" class="icons">
-                <p>Sales</p>
+                <p>Dashboard</p>
+            </a>
+            <a class="menu-options" href="admin-order.html">
+                <img src="/images/checklists.png" class="icons">
+                <p>Order Management</p>
             </a>
             <a class="menu-options">
                 <img src="/images/settings 1.png" class="icons">
@@ -254,7 +235,6 @@
                 <img src="/images/logout 2.png" class="icons">
                 <p>Log Out</p>
             </a>
-
         </div>
 
         <div class="right-side">
@@ -266,76 +246,39 @@
                     <img src="/images/user 2.png" class="icons">
                     <p>User name</p>
                 </div>
-                <div class="notifcations">
-                    <img src="/images/bell.png" class="icons">
-                </div>
             </div>
             
             <div class="right-bottom">
                 <div class="sort-header">               
-                    <h3 id="sales-header">Inventory</h3>
-                    <button class="addBtn">
-                        Add
-                    </button>
+                    <h3 id="sales-header">Stock Levels</h3>
                 </div>
-                <div class="item-header">
-                    <h3>Status</h3>
-                    <h3>Product</h3>
-                    <h3>Stock</h3>
-                    <h3>Price</h3>
+                <div>
+                    <canvas id="myChart" style="width:100%;max-width:900px;padding-left:20px;"></canvas>
+
+                    <script>
+                        var xValues = ["Eggs", "Milk", "Yoghurt", "Cooking Oil", "Rice"];
+                        var yValues = [50, 49, 44, 24, 30];
+                        var barColors = ["red", "green","blue","orange","brown"];
+
+                        new Chart("myChart", {
+                        type: "bar",
+                        data: {
+                            labels: xValues,
+                            datasets: [{
+                            backgroundColor: barColors,
+                            data: yValues
+                            }]
+                        },
+                        options: {
+                            legend: {display: false},
+                            title: {
+                            display: true,
+                            }
+                        }
+                        });
+                    </script>
                 </div>
-                <div class="item-list">
-                    <div class="item-card">
-                        <p class="item-status">status</p>
-                        <div class="product">
-                            <img src="/images/pear.png">
-                            <p class="item-name">Pear</p>
-                        </div>
-                        <div class="progress" style="height: 35px;width: 150px;">
-                            <div class="progress-bar" role="progressbar" style="width: 70%;background-color: #FFA318;color: black;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70/100</div>
-                          </div>
-                        <p class="item-price">$1.00</p>
-                    </div>
-                </div>
-                <div class="item-list">
-                    <div class="item-card">
-                        <p class="item-status">Running Low</p>
-                        <div class="product">
-                            <img src="/images/lemon.png">
-                            <p class="item-name">Lemon</p>
-                        </div>
-                        <div class="progress" style="height: 35px;width: 150px;">
-                            <div class="progress-bar" role="progressbar" style="width: 70%;background-color: #FFA318;color: black;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70/100</div>
-                          </div>
-                        <p class="item-price">$1.00</p>
-                    </div>
-                </div>
-                <div class="item-list">
-                    <div class="item-card">
-                        <p class="item-status">New Stock</p>
-                        <div class="product">
-                            <img src="/images/Apple (2).png">
-                            <p class="item-name">Apple</p>
-                        </div>
-                        <div class="progress" style="height: 35px;width: 150px;">
-                            <div class="progress-bar" role="progressbar" style="width: 70%;background-color: #FFA318;color: black;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70/100</div>
-                          </div>
-                        <p class="item-price">$1.00</p>
-                    </div>
-                </div>
-                <div class="item-list">
-                    <div class="item-card">
-                        <p class="item-status">About to Expire</p>
-                        <div class="product">
-                            <img src="/images/apricot.png">
-                            <p class="item-name">Apricot</p>
-                        </div>
-                        <div class="progress" style="height: 35px;width: 150px;">
-                            <div class="progress-bar" role="progressbar" style="width: 70%;background-color: #FFA318;color: black;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70/100</div>
-                          </div>
-                        <p class="item-price">$1.00</p>
-                    </div>
-                </div>
+                
                 
             </div>
         </div>

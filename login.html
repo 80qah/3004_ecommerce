@@ -31,7 +31,7 @@
         <style>
             body{
                 font: 'Inter';
-                background-color: #F9B208;
+                
             }
 
             .login-box{
@@ -94,42 +94,40 @@
             .login-button{
                 width: 284px;
                 height: 37px;
-                background: #747474;
+                background: #3F9BCC;
                 border-radius: 8px;
                 color:white;
                 border:0px;
             }
             img{
-                width: 130px;
+                width: 300px;
                 height: auto;
             }
             .logo{
                 text-align: center;
                 padding-top:30px;
             }
+            .inputs{
+                padding-top:50px;
+            }
         </style>
 
     </head>
     <body class="content">
-        <div class="login-box">
-            <div class="logo">
-                <img src="/images/marketlogo.png">
-            </div>
-            <div class="header">
-                <h3>Login</h3>
-            </div>
-            <div>
-                <input id="username" type="text" class="form-control" placeholder="Enter email">
-                <input type="text" class="form-control" placeholder="Enter password">
-            </div>
-            <div class="forget">
-                <a href="#">
-                    <i>Forget password?</i>
-                </a>
-            </div>
-            <div class="button">
-                <button class="login-button" onclick="login()">LOGIN</button>
-            </div>
+        <div class="logo">
+            <img src="/images/trolleylogo.png">
+        </div>
+        <div class="inputs">
+            <input id="username" type="text" class="form-control" placeholder="Enter email">
+            <input type="text" class="form-control" placeholder="Enter password">
+        </div>
+        <div class="forget">
+            <a href="#">
+                <i>Forget password?</i>
+            </a>
+        </div>
+        <div class="button">
+            <button class="login-button" onclick="login()">LOGIN</button>
         </div>
         
 

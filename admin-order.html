@@ -16,25 +16,6 @@
     
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
-        <script>
-            var data = 1;
-            
-            //printing default value of data that is 0 in h2 tag
-            document.getElementById("quantity").innerText = data;
-                
-            //creation of increment function
-            function increment() {
-                data = data + 1;
-                document.getElementById("quantity").innerText = data;
-            }
-            //creation of decrement function
-            function decrement() {
-                data = data - 1;
-                document.getElementById("quantity").innerText = data;
-            }
-        </script>
-
-
         <style>
             body{
                 font: 'Inter';
@@ -93,13 +74,6 @@
                 margin-bottom: 20px;
                 width: 100vw;
                 padding-right: 20px;
-            }
-            .welcome-msg{
-                padding-top: 15px;
-                padding-left: 10px;
-            }
-            .welcome-msg h1{
-                font-size: 30px;
             }
             input{
                 width: 600px;
@@ -257,6 +231,23 @@
                 height: auto;
             }
 
+            table {
+            border-collapse: collapse;
+            width: 100%;
+            }
+
+            .table{
+                padding-top: 30px;
+            }
+
+            td, th {
+            text-align: left;
+            padding: 8px;
+            }
+
+            tr:nth-child(even) {
+            background-color: #E8E8E8;
+            }
         </style>
 
     </head>
@@ -274,7 +265,7 @@
                 <img src="/images/bar-chart.png" class="icons">
                 <p>Dashboard</p>
             </a>
-            <a class="menu-options">
+            <a class="menu-options" href="admin-order.html">
                 <img src="/images/checklists.png" class="icons">
                 <p>Order Management</p>
             </a>
@@ -300,9 +291,22 @@
                 </div>
                 
             </div>
-            <div class="welcome-msg">
-                <h1>Welcome Admin!</h1>
+            <div class="table">
+                <table>
+                    <tr>
+                      <th>Order ID</th>
+                      <th>Customer Name</th>
+                      <th>Date of Order</th>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>Maria Anders</td>
+                      <td>08/06/2022</td>
+                    </tr>
+                    
+                </table>
             </div>
+            
         </div>
 
         
