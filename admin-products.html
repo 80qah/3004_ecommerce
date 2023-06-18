@@ -302,6 +302,80 @@
                     </div>
                 </div>
                 
+        <div id="product-list"></div>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+          // Retrieve the product data from the server
+          $.ajax({
+            url: "http://localhost:8080/Products",
+            method: "GET",
+            dataType: "json",
+            success: function (response) {
+              const products = response.products;
+              var productList = $("#product-list");
+
+              // Check if products is an array and not empty
+              if (Array.isArray(products) && products.length > 0) {
+                products.forEach(function (product) {
+                  var listItem = $("<div>").addClass("item-list");
+                  var itemCard = $("<div>").addClass("item-card");
+                  var productInfo = $("<div>").addClass("product");
+                  var productImage = $("<img>")
+                    .attr("src", "/images/egg.jpg")
+                    .addClass("product-img");
+                  var productName = $("<p>")
+                    .addClass("item-name")
+                    .text(product.Name);
+                  var itemPrice = $("<p>")
+                    .addClass("item-price")
+                    .text(product.Price);
+
+                  var progressBarContainer = $("<div>")
+                    .addClass("progress")
+                    .css({
+                      height: "35px",
+                      width: "150px",
+                    });
+                  var progressBar = $("<div>")
+                    .addClass("progress-bar")
+                    .attr({
+                      role: "progressbar",
+                      "aria-valuenow": product.Stock,
+                      "aria-valuemin": "0",
+                      "aria-valuemax": "100",
+                    })
+                    .css({
+                      width: product.Stock + "%",
+                      "background-color": "#a5e2b7",
+                      color: "black",
+                    })
+                    .text(product.Stock + "/150");
+
+                  progressBarContainer.append(progressBar);
+                  productInfo.append(
+                    productImage,
+                    productName,
+                    progressBarContainer
+                  );
+                  itemCard.append(productInfo, itemPrice);
+                  listItem.append(itemCard);
+                  productList.append(listItem);
+                });
+              } else {
+                // Handle case when products is empty or not an array
+                productList.text("No products found.");
+              }
+            },
+            error: function (xhr, status, error) {
+              console.error("Error retrieving products:", error);
+              var productList = $("#product-list");
+              productList.text("Failed to retrieve products: " + error);
+            },
+          });
+        </script>
+
+
             </div>
         </div>
 
