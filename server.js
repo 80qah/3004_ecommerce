@@ -5,10 +5,10 @@ app.use(express.json());
 
 const pool = new Pool({
   user: 'postgres',
-  password: 'wildcats',
+  password: 'mae1997',
   host: 'localhost',
   port: 5432,
-  database: 'ecommerce',
+  database: '3004_db',
 });
 
 
@@ -58,7 +58,7 @@ app.get('/Sales', async (req, res) => {
 });
 
 
-app.listen(8080, () => console.log('Web server is listening on port 8080'));
+app.listen(8000, () => console.log('Web server is listening on port 8000'));
 
 async function getProducts() {
   try {
