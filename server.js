@@ -5,10 +5,10 @@ app.use(express.json());
 
 const pool = new Pool({
   user: 'postgres',
-  password: 'mae1997',
+  password: 'wildcats',
   host: 'localhost',
   port: 5432,
-  database: '3004_db',
+  database: 'ecommerce',
 });
 
 

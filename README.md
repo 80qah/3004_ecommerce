@@ -1,18 +1,13 @@
 # How to Set Up
-## 1. Install
+## Install
 * Docker Desktop
 * Docker extension in Visual Studio Code
 
-## 2. Set up container
+## Set up
 1. Make sure Docker Desktop is opened first
 2. Open terminal in VSCode
-3. Build Docker container
-- `docker build -t foodwastage:v1 .`
-4. Run container
-- `docker run -d -p 80:80 foodwastage:v1`
-5. Go to your browser and enter **localhost/login.html**
-
-## To stop container
-* Open terminal in VSCode
-* Enter `docker ps` and copy the container id
-* Enter `docker stop <container id>`
+3. Build webpage image
+- `docker build -t ecommerce:v1 .`
+4. Run all containers
+- `docker-compose up -d`
+5. Go to your browser and enter **localhost/admin-home.html**
