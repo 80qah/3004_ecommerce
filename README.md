@@ -10,4 +10,13 @@
 - `docker build -t ecommerce:v1 .`
 4. Run all containers
 - `docker-compose up -d`
-5. Go to your browser and enter **localhost/admin-home.html**
+
+## To go to webpage
+Go to your browser and enter **localhost/admin-home.html**
+
+## To go to Postgres Database
+Go to your browser and enter **localhost:5050**
+### Login
+username: admin@admin.com
+password: root
+
