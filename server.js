@@ -4,11 +4,11 @@ const app = express();
 app.use(express.json());
 
 const pool = new Pool({
-  user: 'root',
-  password: 'root',
-  host: '172.20.0.5',
+  user: 'postgres',
+  password: 'postgresmaster',
+  host: '172.17.0.2',
   port: 5432,
-  database: 'ecommerce',
+  database: 'testing',
 });
 
 
@@ -58,7 +58,7 @@ app.get('/Sales', async (req, res) => {
 });
 
 
-app.listen(80, () => console.log('Web server is listening on port 5050'));
+app.listen(8000, () => console.log('Web server is listening on port 5050'));
 
 async function getProducts() {
   try {
