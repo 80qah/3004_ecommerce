@@ -356,16 +356,38 @@
       $("#payment-mode").text("Credit card"); // Populate the payment mode as per your data source
       $("#date-of-order").text(orderDate);
 
-      // Append additional row to the existing table
-      const itemTable = $("table");
-      itemTable.append(
-        `<tr>
-      <td>${productID}</td>
-      <td>${productID}</td>
-      <td>${orderQuantity}</td>
-      <td>${orderStatus}</td>
-        </tr>`
-      );
+      // Make an AJAX request to retrieve the product details
+      $.ajax({
+        url: "http://localhost:8000/Products",
+        method: "GET",
+        dataType: "json",
+        success: function (response) {
+          const products = response.products;
+
+          // Find the product with the matching product ID
+          const product = products.find(
+            (p) => p.product_id === parseInt(productID)
+          );
+
+          if (product) {
+            // Append additional row to the existing table with the product name
+            const itemTable = $("table");
+            itemTable.append(
+              `<tr>
+            <td>${productID}</td>
+            <td>${product.Name}</td>
+            <td>${orderQuantity}</td>
+            <td>${orderStatus}</td>
+          </tr>`
+            );
+          } else {
+            console.error("Product not found");
+          }
+        },
+        error: function (xhr, status, error) {
+          console.error("Error retrieving products:", error);
+        },
+      });
 
       // Use the customer name and order details to fetch the item details from the server
       //   $.ajax({
