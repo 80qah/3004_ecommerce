@@ -77,6 +77,8 @@ services:
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=root
       - POSTGRES_DB=ecommerce
+    expose:
+      - 5432
 
   
   pgadmin:
