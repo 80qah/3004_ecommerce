@@ -362,7 +362,7 @@
             if (confirmed) {
               // Send an AJAX request to update the product data
               $.ajax({
-                url: "/updateItem/" + productID, // Add the product ID to the URL
+                url: "http://localhost:8000/updateItem/" + productID, // Add the product ID to the URL
                 method: "PUT",
                 data: JSON.stringify(updatedProductData),
                 contentType: "application/json",
