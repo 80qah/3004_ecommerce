@@ -334,7 +334,7 @@
         </div>
       </div>
       <div class="completebtn">
-        <button>Mark as Complete</button>
+        <button id="complete-button">Mark as Complete</button>
       </div>
     </div>
 
@@ -380,6 +380,13 @@
             <td>${orderStatus}</td>
           </tr>`
             );
+
+            // Update the complete button text and style based on the order status
+            const completeButton = $("#complete-button");
+            if (orderStatus === "Returned" || orderStatus === "Delivered") {
+              completeButton.text("Completed");
+              completeButton.css("background-color", "#8AFF8A");
+            }
           } else {
             console.error("Product not found");
           }

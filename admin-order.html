@@ -321,6 +321,30 @@
 
           // Check if orders is an array and not empty
           if (Array.isArray(orders) && orders.length > 0) {
+            // Sort the orders based on the order status
+            orders.sort((a, b) => {
+              // Define the order status priority
+              const statusPriority = {
+                Pending: 1,
+                Returned: 2,
+                Delivered: 3,
+              };
+
+              // Get the priority value for each order
+              const priorityA = statusPriority[a.Order_Status] || 0;
+              const priorityB = statusPriority[b.Order_Status] || 0;
+
+              // Compare the priority values
+              if (priorityA < priorityB) {
+                return -1;
+              } else if (priorityA > priorityB) {
+                return 1;
+              } else {
+                // If the priority values are equal, sort by order ID
+                return a.Order_id - b.Order_id;
+              }
+            });
+
             orders.forEach((order) => {
               var row = $("<tr>");
               var orderID = order.Order_id;
