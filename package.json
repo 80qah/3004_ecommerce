@@ -20,6 +20,7 @@
   "homepage": "https://github.com/80qah/3004_ecommerce#readme",
   "dependencies": {
     "express": "^4.18.2",
+    "kafka-node": "^5.0.0",
     "pg": "^8.11.0"
   }
 }

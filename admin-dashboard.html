@@ -298,29 +298,50 @@
                 // Extract the product_id values from the sales data
                 var xValues = sales.map((sale) => sale.product_id);
 
-                // Generate random colors for barColors
-                var barColors = generateRandomColors(xValues.length);
+                // Make an AJAX request to retrieve the product details
+                $.ajax({
+                  url: "http://localhost:8000/Products",
+                  method: "GET",
+                  dataType: "json",
+                  success: function (response) {
+                    const products = response.products;
 
-                // Extract the quantity_sold values from the sales data
-                var yValues = sales.map((sale) => sale.quantity_sold);
+                    // Map the product_id values to product names
+                    xValues = xValues.map((productID) => {
+                      const product = products.find(
+                        (p) => p.product_id === productID
+                      );
+                      return product ? product.Name : "Unknown Product";
+                    });
 
-                // Create the chart
-                new Chart("myChart", {
-                  type: "bar",
-                  data: {
-                    labels: xValues,
-                    datasets: [
-                      {
-                        backgroundColor: barColors,
-                        data: yValues,
+                    // Generate random colors for barColors
+                    var barColors = generateRandomColors(xValues.length);
+
+                    // Extract the quantity_sold values from the sales data
+                    var yValues = sales.map((sale) => sale.quantity_sold);
+
+                    // Create the chart
+                    new Chart("myChart", {
+                      type: "bar",
+                      data: {
+                        labels: xValues,
+                        datasets: [
+                          {
+                            backgroundColor: barColors,
+                            data: yValues,
+                          },
+                        ],
                       },
-                    ],
+                      options: {
+                        legend: { display: false },
+                        title: {
+                          display: true,
+                        },
+                      },
+                    });
                   },
-                  options: {
-                    legend: { display: false },
-                    title: {
-                      display: true,
-                    },
+                  error: function (xhr, status, error) {
+                    console.error("Error retrieving products:", error);
                   },
                 });
               },
