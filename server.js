@@ -154,53 +154,13 @@ async function getSales() {
   }
 }
 
-// async function updateProductData(productData) {
-//   const { productId, name, category, subCategory, stock, price } = productData;
-
-//   try {
-//     const client = await pool.connect();
-//     const query = `
-//       UPDATE public."Products"
-//       SET "Name" = $1, "Category" = $2, "Sub Category" = $3, "Stock" = $4, "Price" = $5
-//       WHERE product_id = $6;
-//     `;
-//     const values = [name, category, subCategory, stock, price, productId];
-//     await client.query(query, values);
-//     client.release();
-//     console.log('Client released');
-//   } catch (error) {
-//     console.error('Error updating product data:', error);
-//     throw error;
-//   }
-// }
-
 // SQL queries
 const queries = {
   getProductById: 'SELECT * FROM public."Products" WHERE product_id = $1',
   updateProduct: 'UPDATE public."Products" SET "Name" = $1, "Category" = $2, "Sub Category" = $3, "Stock" = $4, "Price" = $5 WHERE product_id = $6',
 };
 
-// Route to update a product
-// app.put("/updateItem/", (req, res) => {
-//   const id = parseInt(req.body.id); // Assuming the product ID is provided in the request body
-//   const { name, category, subCategory, stock, price } = req.body;
-
-//   pool.query(queries.getProductById, [id], (error, results) => {
-//     const noProductFound = !results.rows.length;
-//     if (noProductFound) {
-//       res.send("Product does not exist in the database");
-//     } else {
-//       pool.query(
-//         queries.updateProduct,
-//         [name, category, subCategory, stock, price, id],
-//         (error, results) => {
-//           if (error) throw error;
-//           res.status(200).send("Product updated successfully");
-//         }
-//       );
-//     }
-//   });
-// });
+//Route to update a product
 app.put("/updateItem/:id", (req, res) => {
   const id = parseInt(req.params.id); // Extract the product ID from the URL parameter
   const { name, category, subCategory, stock, price } = req.body;

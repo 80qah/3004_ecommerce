@@ -280,6 +280,10 @@
 
               // Check if products is an array and not empty
               if (Array.isArray(products) && products.length > 0) {
+                // Sort the products array based on the product ID in ascending order
+                products.sort(function (a, b) {
+                  return a.product_id - b.product_id;
+                });
                 products.forEach(function (product) {
                   var listItem = $("<div>").addClass("item-list");
                   var itemCard = $("<div>").addClass("item-card");

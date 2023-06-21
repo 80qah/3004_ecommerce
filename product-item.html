@@ -282,7 +282,7 @@
               <label>Sub Category</label>
               <div id="subcategory-select">
                 <select id="subcategory-options" name="subcategory">
-                  <option value="category">Category</option>
+                  <option value="subcategory">Sub Category</option>
                 </select>
               </div>
             </div>
@@ -422,10 +422,12 @@
 
               // Populate subcategory dropdown
               uniqueSubcategories.forEach(function (subcategory) {
-                const option = $("<option>")
-                  .attr("value", subcategory)
-                  .text(subcategory);
-                subcategorySelect.append(option);
+                if (subcategory !== null) {
+                  const option = $("<option>")
+                    .attr("value", subcategory)
+                    .text(subcategory);
+                  subcategorySelect.append(option);
+                }
               });
 
               // Get the category and subcategory values from query parameters
