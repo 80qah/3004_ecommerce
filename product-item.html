@@ -255,6 +255,10 @@
           </div>
           <div class="bottom-right">
             <div class="info">
+              <label>product id</label>
+              <input type="text" id="product-input" />
+            </div>
+            <div class="info">
               <label>Name</label>
               <input type="text" id="name-input" />
             </div>
@@ -304,71 +308,76 @@
         const price = decodeURIComponent(queryParams.get("price"));
         const category = decodeURIComponent(queryParams.get("category"));
         const subcategory = decodeURIComponent(queryParams.get("subcategory"));
+        const productID = decodeURIComponent(queryParams.get("productID"));
 
         // Set the values in the input fields
         document.getElementById("name-input").value = name;
         document.getElementById("stock-input").value = stock;
         document.getElementById("price-input").value = price;
-        //document.getElementById("category-input").value = category;
-        //document.getElementById("subcategory-input").value = subcategory;
-      </script>
+        document.getElementById("product-input").value = productID;
 
-      <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-      <script>
-        // Fetch categories and subcategories from the server
-        fetchCategoriesAndSubcategories();
+        // Set the selected category and subcategory options
+        document.getElementById("category-options").value = category;
+        document.getElementById("subcategory-options").value = subcategory;
 
-        function fetchCategoriesAndSubcategories() {
-          $.ajax({
-            url: "http://localhost:8080/Products",
-            method: "GET",
-            dataType: "json",
-            success: function (response) {
-              const data = response.products; // Assuming the "products" property contains the array of products
-              const categorySelect = $("#category-options");
-              const subcategorySelect = $("#subcategory-options");
-
-              // Clear existing options in the category and subcategory dropdowns
-              categorySelect.empty();
-              subcategorySelect.empty();
-
-              // Collect unique categories and subcategories
-              const uniqueCategories = new Set();
-              const uniqueSubcategories = new Set();
-
-              data.forEach(function (product) {
-                const category = product.Category;
-                const subcategory = product["Sub Category"];
-
-                uniqueCategories.add(category);
-                uniqueSubcategories.add(subcategory);
-              });
-
-              // Populate category dropdown
-              uniqueCategories.forEach(function (category) {
-                const option = $("<option>")
-                  .attr("value", category)
-                  .text(category);
-                categorySelect.append(option);
-              });
-
-              // Populate subcategory dropdown
-              uniqueSubcategories.forEach(function (subcategory) {
-                const option = $("<option>")
-                  .attr("value", subcategory)
-                  .text(subcategory);
-                subcategorySelect.append(option);
-              });
-            },
-            error: function (xhr, status, error) {
-              console.error(
-                "Error fetching categories and subcategories:",
-                error
-              );
-            },
+        // cancel button
+        document
+          .getElementById("cancelbtn")
+          .addEventListener("click", function () {
+            history.back();
           });
-        }
-      </script> -->
+
+        // Handle "Save Changes" button click event
+        document
+          .getElementById("savebtn")
+          .addEventListener("click", function (event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Perform the necessary actions to save the changes
+            // Get the updated values from the input fields
+            const updatedName = document.getElementById("name-input").value;
+            const updatedStock = document.getElementById("stock-input").value;
+            const updatedPrice = document.getElementById("price-input").value;
+
+            // Get the selected category and subcategory values
+            const updatedCategory =
+              document.getElementById("category-options").value;
+            const updatedSubcategory = document.getElementById(
+              "subcategory-options"
+            ).value;
+
+            // Create an object with the updated data
+            const updatedProductData = {
+              name: updatedName,
+              stock: updatedStock,
+              price: updatedPrice,
+              category: updatedCategory,
+              subcategory: updatedSubcategory,
+            };
+
+            // Show a confirmation popup with the changes
+            const confirmationMessage = `Are you sure you want to save the changes?`;
+            const confirmed = confirm(confirmationMessage);
+
+            if (confirmed) {
+              // Send an AJAX request to update the product data
+              $.ajax({
+                url: "/updateItem/" + productID, // Add the product ID to the URL
+                method: "PUT",
+                data: JSON.stringify(updatedProductData),
+                contentType: "application/json",
+                success: function (response) {
+                  console.log("Product data updated successfully");
+                  // Handle success response
+                },
+                error: function (xhr, status, error) {
+                  console.error("Error updating product data:", error);
+                  // Handle error response
+                },
+              });
+            }
+          });
+      </script>
 
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       <script>

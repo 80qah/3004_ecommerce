@@ -264,90 +264,6 @@
           <h3>Stock</h3>
           <h3>Price</h3>
         </div>
-        <!-- <div class="item-list">
-          <div class="item-card">
-            <div class="product">
-              <img src="/images/pear.png" />
-              <p class="item-name">Pear</p>
-            </div>
-            <div class="progress" style="height: 35px; width: 150px">
-              <div
-                class="progress-bar"
-                role="progressbar"
-                style="width: 70%; background-color: #a5e2b7; color: black"
-                aria-valuenow="70"
-                aria-valuemin="0"
-                aria-valuemax="100"
-              >
-                70/100
-              </div>
-            </div>
-            <p class="item-price">$1.00</p>
-          </div>
-        </div>
-        <div class="item-list">
-          <div class="item-card">
-            <div class="product">
-              <img src="/images/lemon.png" />
-              <p class="item-name">Lemon</p>
-            </div>
-            <div class="progress" style="height: 35px; width: 150px">
-              <div
-                class="progress-bar"
-                role="progressbar"
-                style="width: 70%; background-color: #a5e2b7; color: black"
-                aria-valuenow="70"
-                aria-valuemin="0"
-                aria-valuemax="100"
-              >
-                70/100
-              </div>
-            </div>
-            <p class="item-price">$1.00</p>
-          </div>
-        </div>
-        <div class="item-list">
-          <div class="item-card">
-            <div class="product">
-              <img src="/images/Apple (2).png" />
-              <p class="item-name">Apple</p>
-            </div>
-            <div class="progress" style="height: 35px; width: 150px">
-              <div
-                class="progress-bar"
-                role="progressbar"
-                style="width: 70%; background-color: #a5e2b7; color: black"
-                aria-valuenow="70"
-                aria-valuemin="0"
-                aria-valuemax="100"
-              >
-                70/100
-              </div>
-            </div>
-            <p class="item-price">$1.00</p>
-          </div>
-        </div>
-        <div class="item-list">
-          <div class="item-card">
-            <div class="product">
-              <img src="/images/apricot.png" />
-              <p class="item-name">Apricot</p>
-            </div>
-            <div class="progress" style="height: 35px; width: 150px">
-              <div
-                class="progress-bar"
-                role="progressbar"
-                style="width: 70%; background-color: #a5e2b7; color: black"
-                aria-valuenow="70"
-                aria-valuemin="0"
-                aria-valuemax="100"
-              >
-                70/100
-              </div>
-            </div>
-            <p class="item-price">$1.00</p>
-          </div>
-        </div> -->
 
         <div id="product-list"></div>
 
@@ -355,7 +271,7 @@
         <script>
           // Retrieve the product data from the server
           $.ajax({
-            url: "http://localhost:8000/Products",
+            url: "http://127.0.0.1:8000/Products",
             method: "GET",
             dataType: "json",
             success: function (response) {
@@ -423,7 +339,9 @@
                       "&category=" +
                       encodeURIComponent(product.Category) +
                       "&subcategory=" +
-                      encodeURIComponent(product["Sub Category"]);
+                      encodeURIComponent(product["Sub Category"]) +
+                      "&productID=" +
+                      encodeURIComponent(product.product_id);
 
                     window.location.href = url;
                   });
