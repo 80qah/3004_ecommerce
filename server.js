@@ -1,58 +1,58 @@
 const { Pool } = require('pg');
 const express = require('express');
-const kafka = require('kafka-node');
+//const kafka = require('kafka-node');
 const app = express();
 app.use(express.json());
 
 const pool = new Pool({
   user: 'postgres',
-  password: 'postgresmaster',
-  host: '172.17.0.2',
+  password: 'mae1997',
+  host: 'localhost',
   port: 5432,
-  database: 'testing',
+  database: '3004_db',
 });
 
 const PORT = 8000;
 
-// Kafka Producer setup
-const kafkaClient = new kafka.KafkaClient({ kafkaHost: 'localhost:9092' });
-const producer = new kafka.Producer(kafkaClient);
+// // Kafka Producer setup
+// const kafkaClient = new kafka.KafkaClient({ kafkaHost: 'localhost:9092' });
+// const producer = new kafka.Producer(kafkaClient);
 
-producer.on('ready', function () {
-  console.log('Kafka Producer is ready');
-});
+// producer.on('ready', function () {
+//   console.log('Kafka Producer is ready');
+// });
 
-producer.on('error', function (error) {
-  console.error('Error occurred while initializing Kafka Producer:', error);
-});
+// producer.on('error', function (error) {
+//   console.error('Error occurred while initializing Kafka Producer:', error);
+// });
 
-app.post('/updateProduct', async (req, res) => {
-  const { productId, name, category, subCategory, stock, price } = req.body;
+// app.post('/updateProduct', async (req, res) => {
+//   const { productId, name, category, subCategory, stock, price } = req.body;
 
-  try {
-    await updateProductData({ productId, name, category, subCategory, stock, price });
+//   try {
+//     await updateProductData({ productId, name, category, subCategory, stock, price });
 
-    // Produce a message to Kafka when the product is updated
-    const messagePayload = JSON.stringify({ productId, name, category, subCategory, stock, price });
-    const payload = [
-      { topic: 'product-updates', messages: messagePayload }
-    ];
+//     // Produce a message to Kafka when the product is updated
+//     const messagePayload = JSON.stringify({ productId, name, category, subCategory, stock, price });
+//     const payload = [
+//       { topic: 'product-updates', messages: messagePayload }
+//     ];
 
-    producer.send(payload, (error, data) => {
-      if (error) {
-        console.error('Error sending message to Kafka:', error);
-      } else {
-        console.log('Message sent to Kafka:', data);
-      }
-    });
+//     producer.send(payload, (error, data) => {
+//       if (error) {
+//         console.error('Error sending message to Kafka:', error);
+//       } else {
+//         console.log('Message sent to Kafka:', data);
+//       }
+//     });
 
-    console.log('Product data updated successfully');
-    res.sendStatus(200);
-  } catch (error) {
-    console.error('Error updating product data:', error);
-    res.sendStatus(500);
-  }
-});
+//     console.log('Product data updated successfully');
+//     res.sendStatus(200);
+//   } catch (error) {
+//     console.error('Error updating product data:', error);
+//     res.sendStatus(500);
+//   }
+// });
 
 
 // Enable CORS
