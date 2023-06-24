@@ -6,10 +6,10 @@ app.use(express.json());
 
 const pool = new Pool({
   user: 'postgres',
-  password: 'mae1997',
+  password: 'root',
   host: 'localhost',
-  port: 5432,
-  database: '3004_db',
+  port: 5434,
+  database: 'ecommerce-db',
 });
 
 const PORT = 8000;
@@ -158,6 +158,8 @@ async function getSales() {
 const queries = {
   getProductById: 'SELECT * FROM public."Products" WHERE product_id = $1',
   updateProduct: 'UPDATE public."Products" SET "Name" = $1, "Category" = $2, "Sub Category" = $3, "Stock" = $4, "Price" = $5 WHERE product_id = $6',
+  getOrderById: 'SELECT * FROM public."Orders" WHERE Order_id = $1',
+  updateOrder: 'UPDATE public."Orders" SET "Order_Status" = $1 WHERE "Order_id" = $2',
 };
 
 //Route to update a product
@@ -179,6 +181,32 @@ app.put("/updateItem/:id", (req, res) => {
             res.status(500).send("Error updating product");
           } else {
             res.status(200).send("Product updated successfully");
+          }
+        }
+      );
+    }
+  });
+});
+
+//Route to update an order
+app.put("/updateOrderItem/:id", (req, res) => {
+  const id = parseInt(req.params.id); // Extract the order ID from the URL parameter
+  const { status } = req.body;
+
+  pool.query(queries.getOrderById, [id], (error, results) => {
+    const noOrderFound = !results.rows.length;
+    if (noOrderFound) {
+      res.send("Order does not exist in the database");
+    } else {
+      pool.query(
+        queries.updateOrder,
+        [status, id],
+        (error, results) => {
+          if (error) {
+            console.error("Error updating Order:", error);
+            res.status(500).send("Error updating Order");
+          } else {
+            res.status(200).send("Order complete");
           }
         }
       );

@@ -396,6 +396,37 @@
         },
       });
 
+
+      // Handle "Mark as complete" button click event
+      document
+          .getElementById("complete-button")
+          .addEventListener("click", function (event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Update status
+            const updatedStatus = "Delivered";
+
+            // Create an object with the updated data
+            const updatedOrderData = {
+              status: updatedStatus
+            };
+
+            $.ajax({
+              url: "http://localhost:8000/updateOrderItem/" + orderID, // Add the product ID to the URL
+              method: "PUT",
+              data: JSON.stringify(updatedOrderData),
+              contentType: "application/json",
+              success: function (response) {
+                console.log("Product data updated successfully");
+                // Handle success response
+              },
+              error: function (xhr, status, error) {
+                console.error("Error updating product data:", error);
+                // Handle error response
+              },
+            });
+          });
+
       // Use the customer name and order details to fetch the item details from the server
       //   $.ajax({
       //     url:

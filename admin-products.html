@@ -176,9 +176,9 @@
       .item-name {
         font-size: 23px;
         margin-bottom: 0;
-        max-width: 200px;
+        width: 400px;
         text-align: left;
-        padding-left: 10px;
+        padding-right: 50px;
       }
       .item-price {
         font-size: 22px;
@@ -234,7 +234,7 @@
         <img src="/images/checklists.png" class="icons" />
         <p>Order Management</p>
       </a>
-      <a class="menu-options">
+      <a class="menu-options" href="settings.html">
         <img src="/images/settings 1.png" class="icons" />
         <p>Settings</p>
       </a>
@@ -288,9 +288,7 @@
                   var listItem = $("<div>").addClass("item-list");
                   var itemCard = $("<div>").addClass("item-card");
                   var productInfo = $("<div>").addClass("product");
-                  var productImage = $("<img>")
-                    .attr("src", "/images/egg.jpg")
-                    .addClass("product-img");
+                  
                   var productName = $("<p>")
                     .addClass("item-name")
                     .text(product.Name);
@@ -321,7 +319,7 @@
 
                   progressBarContainer.append(progressBar);
                   productInfo.append(
-                    productImage,
+                    
                     productName,
                     progressBarContainer
                   );
