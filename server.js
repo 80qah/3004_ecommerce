@@ -139,7 +139,7 @@ async function getSales() {
 const queries = {
   getProductById: 'SELECT * FROM public."Products" WHERE product_id = $1',
   updateProduct: 'UPDATE public."Products" SET "Name" = $1, "Category" = $2, "Sub Category" = $3, "Stock" = $4, "Price" = $5 WHERE product_id = $6',
-  reserveStock: 'UPDATE public."Products" SET "Stock" = $1 WHERE product_id = $2'
+  //reserveStock: 'UPDATE public."Products" SET "Stock" -= $1 WHERE product_id = $2'
 };
 //Route to update a product
 app.put("/updateItem/:id", (req, res) => {
@@ -166,6 +166,8 @@ app.put("/updateItem/:id", (req, res) => {
   });
 });
 
+
+/*
 // Define a route for reserving inventory
 app.put("/reserveInventory/:id", (req, res) => {
   const id = parseInt(req.params.id); // Extract the product ID from the URL parameter
@@ -191,3 +193,4 @@ app.put("/reserveInventory/:id", (req, res) => {
     }
   });
 });
+*/
