@@ -386,7 +386,47 @@
             if (orderStatus === "Returned" || orderStatus === "Delivered") {
               completeButton.text("Completed");
               completeButton.css("background-color", "#8AFF8A");
+              completeButton.attr("disabled", true); // Disable the button when orderStatus is Returned or Delivered
+            } else if (orderStatus === "Pending") {
+              completeButton.text("Mark as Complete");
+              completeButton.css("background-color", "#blue");
+              completeButton.attr("disabled", false); // Enable the button when orderStatus is Pending
             }
+            // Handle "Mark as complete" button click event
+            completeButton.on("click", function (event) {
+              event.preventDefault(); // Prevent default form submission
+
+              // Update status
+              const updatedStatus = "Delivered";
+
+              // Create an object with the updated data
+              const updatedOrderData = {
+                status: updatedStatus,
+              };
+
+              $.ajax({
+                url: "http://localhost:8000/updateOrderItem/" + orderID, // Add the product ID to the URL
+                method: "PUT",
+                data: JSON.stringify(updatedOrderData),
+                contentType: "application/json",
+                success: function (response) {
+                  console.log("Order status updated successfully");
+                  // Update the order status in the table
+                  $("table tr:last-child td:nth-child(4)").text(updatedStatus);
+
+                  // Update the button text, style, and disable it
+                  completeButton.text("Completed");
+                  completeButton.css("background-color", "#8AFF8A");
+                  completeButton.attr("disabled", true);
+
+                  // Handle success response
+                },
+                error: function (xhr, status, error) {
+                  console.error("Error updating order status:", error);
+                  // Handle error response
+                },
+              });
+            });
           } else {
             console.error("Product not found");
           }
@@ -395,37 +435,6 @@
           console.error("Error retrieving products:", error);
         },
       });
-
-
-      // Handle "Mark as complete" button click event
-      document
-          .getElementById("complete-button")
-          .addEventListener("click", function (event) {
-            event.preventDefault(); // Prevent default form submission
-
-            // Update status
-            const updatedStatus = "Delivered";
-
-            // Create an object with the updated data
-            const updatedOrderData = {
-              status: updatedStatus
-            };
-
-            $.ajax({
-              url: "http://localhost:8000/updateOrderItem/" + orderID, // Add the product ID to the URL
-              method: "PUT",
-              data: JSON.stringify(updatedOrderData),
-              contentType: "application/json",
-              success: function (response) {
-                console.log("Product data updated successfully");
-                // Handle success response
-              },
-              error: function (xhr, status, error) {
-                console.error("Error updating product data:", error);
-                // Handle error response
-              },
-            });
-          });
 
       // Use the customer name and order details to fetch the item details from the server
       //   $.ajax({
