@@ -139,7 +139,6 @@ async function getSales() {
 const queries = {
   getProductById: 'SELECT * FROM public."Products" WHERE product_id = $1',
   updateProduct: 'UPDATE public."Products" SET "Name" = $1, "Category" = $2, "Sub Category" = $3, "Stock" = $4, "Price" = $5 WHERE product_id = $6',
-  reserveStock: 'UPDATE public."Products" SET "Stock" = $1 WHERE product_id = $2',
   getOrderById: 'SELECT * FROM public."Orders" WHERE "Order_id" = $1',
   updateOrderStatus: 'UPDATE public."Orders" SET "Order_Status" = $1 WHERE "Order_id" = $2',
 };
@@ -195,27 +194,27 @@ app.put("/updateOrderItem/:id", (req, res) => {
 });
 
 // Define a route for reserving inventory
-app.put("/reserveInventory/:id", (req, res) => {
-  const id = parseInt(req.params.id); // Extract the product ID from the URL parameter
-  const quantityToReserve = parseInt(req.body.quantity); // Extract the quantity from the request body
+// app.put("/reserveInventory/:id", (req, res) => {
+//   const id = parseInt(req.params.id); // Extract the product ID from the URL parameter
+//   const quantityToReserve = parseInt(req.body.quantity); // Extract the quantity from the request body
 
-  pool.query(queries.getProductById, [id], (error, results) => {
-    const noProductFound = !results.rows.length;
-    if (noProductFound) {
-      res.send("Product does not exist in the database");
-    } else {
-      pool.query(
-        queries.reserveStock,
-        [quantityToReserve, id],
-        (error, results) => {
-          if (error) {
-            console.error("Error reserving inventory:", error);
-            res.status(500).send("Error reserving inventory for product");
-          } else {
-            res.status(200).json({ message: 'Inventory reserved successfully' });
-          }
-        }
-      );
-    }
-  });
-});
+//   pool.query(queries.getProductById, [id], (error, results) => {
+//     const noProductFound = !results.rows.length;
+//     if (noProductFound) {
+//       res.send("Product does not exist in the database");
+//     } else {
+//       pool.query(
+//         queries.reserveStock,
+//         [quantityToReserve, id],
+//         (error, results) => {
+//           if (error) {
+//             console.error("Error reserving inventory:", error);
+//             res.status(500).send("Error reserving inventory for product");
+//           } else {
+//             res.status(200).json({ message: 'Inventory reserved successfully' });
+//           }
+//         }
+//       );
+//     }
+//   });
+// });

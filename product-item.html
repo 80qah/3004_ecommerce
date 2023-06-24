@@ -205,12 +205,16 @@
         background-color: #b3efbd;
         padding: 7px 20px 7px 20px;
       }
+
+      /*
       #reservebtn{
         border-radius: 10px;
         border: 0px;
         background-color: #b3efbd;
         padding: 7px 20px 7px 20px;
       }
+      */
+
     </style>
   </head>
   <body class="content">
@@ -298,11 +302,11 @@
           </div>
           <div>
             <button id="savebtn">Save Changes</button>
-            <button id="reservebtn" data-bs-toggle="modal" data-bs-target="#reserveModal">Reserve Inventory</button>
+            <!--<button id="reservebtn" data-bs-toggle="modal" data-bs-target="#reserveModal">Reserve Inventory</button>-->
           </div>
         </div>
 
-        <!-- Reserve Inventory Modal -->
+        <!-- Reserve Inventory Modal 
       <div class="modal fade" id="reserveModal" tabindex="-1" aria-labelledby="reserveModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -322,7 +326,7 @@
         <button type="button" class="btn btn-primary" id="reserve-confirm">Reserve</button>
       </div>
     </div>
-  </div>
+  </div>-->
 </div>
       </div>
 
@@ -405,68 +409,51 @@
             }
           });
           
-      //** FOR RESERVE INVENTORY BUTTON **//
-      // Get the reserve input and reserve button
 
-      const reserveInput = document.getElementById("reserve-input");
-      const reserveButton = document.getElementById("reserve-confirm");
+      
+      //FOR RESERVE INVENTORY BUTTON 
+      //Get the reserve input and reserve button
+      
+      //const reserveInput = document.getElementById("reserve-input");
+      //const reserveButton = document.getElementById("reserve-confirm");
       
       // Handle "Reserve Inventory" button click event
-      reserveButton.addEventListener("click", function () {
-      const quantityToReserve = reserveInput.value;
-      
-      /*
-      const reservedInventoryQuantity = {
-        quantity: quantityToReserve
-      };
-      */
-      const updatedName = document.getElementById("name-input").value;
-            const updatedStock = document.getElementById("stock-input").value;
-            const updatedPrice = document.getElementById("price-input").value;
+      //reserveButton.addEventListener("click", function () {
+      //const quantityToReserve = reserveInput.value;
 
-            // Get the selected category and subcategory values
-            const updatedCategory =
-              document.getElementById("category-options").value;
-            const updatedSubcategory = document.getElementById(
-              "subcategory-options"
-            ).value;
+      //const reservedInventoryQuantity = {
+      //quantity: quantityToReserve
+      //};
 
-            // Create an object with the updated data
-            const updatedProductData = {
-              name: updatedName,
-              stock: updatedStock,
-              price: updatedPrice,
-              category: updatedCategory,
-              subcategory: updatedSubcategory,
-            };
+      // Show a confirmation popup with the reservation details
+      //const confirmationMessage = `Are you sure you want to reserve ${quantityToReserve} units of this product?`;
+      //const confirmed = confirm(confirmationMessage);
 
-            // Show a confirmation popup with the changes
-            const confirmationMessage = `Are you sure you want to save the changes?`;
-            const confirmed = confirm(confirmationMessage);
-
-            if (confirmed) {
-              // Send an AJAX request to update the product data
-              $.ajax({
-                url: "http://localhost:8000/reserveInventory/" + productID, // Add the product ID to the URL
-                method: "PUT",
-                data: JSON.stringify(updatedProductData),
-                contentType: "application/json",
-                success: function (response) {
-                  console.log("Product data updated successfully");
-                  // Handle success response
-                },
-                error: function (xhr, status, error) {
-                  console.error("Error updating product data:", error);
-                  // Handle error response
-                },
-              });
-            }
+      //if (confirmed) {
+      // Perform the necessary actions to reserve the inventory
+      // Send an AJAX request to update the product data
+      //$.ajax({
+      // url: "http://localhost:8000/reserveInventory/" + productID,
+      //  method: "PUT",
+      //  data: JSON.stringify(reservedInventoryQuantity),
+      //  contentType: "application/json",
+      //  crossDomain: true, // Enable CORS
+      //  success: function (response) {
+      //    // Handle success response
+      //    console.log("Successfully reserved inventory quantity!");
+      //  },
+      //  error: function (xhr, status, error) {
+      //  console.error("Error reserving inventory quantity:", error);
+      //    // Handle error response
+      //  },
+      //});
+    //}
+    
 
     // Close the modal
-    const reserveModal = new bootstrap.Modal(document.getElementById("reserveModal"));
-    reserveModal.hide();
-  });
-
+    //const reserveModal = new bootstrap.Modal(document.getElementById("reserveModal"));
+    //reserveModal.hide();
+  //});
 
       </script>
 
